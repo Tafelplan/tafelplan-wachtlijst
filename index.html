@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<!-- saved from url=(0062)file:///C:/Users/Gebruiker/Downloads/tafelplan_wachtlijst.html -->
+<html lang="nl"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tafelplan — Wachtlijst</title>
+<link href="./Tafelplan — Wachtlijst_files/css2" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --forest:#1B4332;--sage:#40916C;--gold:#E9C46A;--gold2:#d4a84b;
+  --cream:#FEFAE0;--cream2:#f5f0d0;--hout:#3B2F25;
+}
+html,body{height:100%;}
+body{
+  font-family:'DM Sans',sans-serif;font-weight:300;
+  -webkit-font-smoothing:antialiased;
+  background:var(--cream);
+  color:var(--forest);
+  min-height:100vh;
+  display:flex;flex-direction:column;
+}
+
+/* Achtergrond merkfoto met overlay */
+.bg{
+  position:fixed;inset:0;z-index:0;
+  background-image:url('https://zqnpzbfocxowywrwfveu.supabase.co/storage/v1/render/image/public/recepten-fotos/landing/hero-wachtlijst.webp?width=1400&quality=80');
+  background-size:cover;background-position:center 30%;
+}
+.bg-overlay{
+  position:fixed;inset:0;z-index:1;
+  background:linear-gradient(105deg,rgba(7,13,9,0.78) 0%,rgba(7,13,9,0.55) 50%,rgba(7,13,9,0.28) 100%);
+}
+
+/* Content */
+.page{
+  position:relative;z-index:2;
+  min-height:100vh;
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  padding:48px 24px;
+  text-align:center;
+}
+
+/* Logo */
+.logo{
+  width:72px;height:72px;object-fit:contain;
+  margin:0 auto 32px;display:block;
+}
+
+/* Wordmark */
+.wordmark{
+  font-family:'Playfair Display',serif;
+  font-size:40px;font-weight:500;
+  color:var(--cream);letter-spacing:-0.5px;
+  margin-bottom:4px;
+  line-height:1;
+}
+.wordmark span{color:var(--gold);}
+
+/* Tagline */
+.tagline{
+  font-family:'Cormorant Garamond',serif;
+  font-size:22px;font-weight:300;font-style:italic;
+  color:rgba(254,250,224,0.65);
+  margin-bottom:36px;
+}
+
+/* Separator */
+.sep{
+  display:flex;align-items:center;gap:12px;
+  justify-content:center;margin-bottom:36px;
+}
+.sep-line{width:48px;height:1px;background:rgba(233,196,106,0.3);}
+.sep-dot{font-size:14px;color:rgba(233,196,106,0.5);}
+
+/* Sub */
+.sub{
+  font-size:16px;line-height:1.75;
+  color:rgba(254,250,224,0.6);
+  max-width:420px;margin:0 auto 48px;
+}
+
+/* Prijs badge */
+.prijs-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(233,196,106,0.12);
+  border:0.5px solid rgba(233,196,106,0.28);
+  border-radius:100px;
+  padding:8px 18px;
+  margin-bottom:32px;
+  font-size:13px;color:var(--gold);
+}
+.prijs-badge strong{font-weight:500;}
+.prijs-badge .dot{width:4px;height:4px;border-radius:50%;background:rgba(233,196,106,0.4);}
+
+/* Formulier */
+.form{
+  width:100%;max-width:400px;
+  display:flex;flex-direction:column;gap:10px;
+  margin:0 auto 24px;
+}
+.form input{
+  width:100%;padding:14px 18px;
+  background:rgba(254,250,224,0.1);
+  border:0.5px solid rgba(254,250,224,0.2);
+  border-radius:100px;
+  font-family:'DM Sans',sans-serif;
+  font-size:15px;color:var(--cream);
+  outline:none;
+  transition:border-color 0.2s,background 0.2s;
+}
+.form input::placeholder{color:rgba(254,250,224,0.35);}
+.form input:focus{
+  border-color:rgba(233,196,106,0.45);
+  background:rgba(254,250,224,0.14);
+}
+.form button{
+  width:100%;padding:14px;
+  background:var(--gold);
+  border:none;border-radius:100px;
+  font-family:'DM Sans',sans-serif;
+  font-size:15px;font-weight:500;
+  color:var(--forest);
+  cursor:pointer;
+  transition:background 0.2s,transform 0.15s;
+}
+.form button:hover{background:#f0cc72;transform:translateY(-1px);}
+.form button:active{transform:translateY(0);}
+
+/* Disclaimer */
+.disc{
+  font-size:12px;color:rgba(254,250,224,0.3);
+  line-height:1.65;max-width:360px;margin:0 auto;
+}
+
+/* Footer */
+footer{
+  position:relative;z-index:2;
+  padding:20px 24px;text-align:center;
+  font-size:11px;color:rgba(254,250,224,0.22);
+  letter-spacing:0.5px;
+}
+footer a{color:rgba(254,250,224,0.3);text-decoration:none;}
+
+/* Success state */
+.success{
+  display:none;
+  text-align:center;
+  padding:28px 24px;
+}
+.success-icon{font-size:48px;margin-bottom:16px;}
+.success h2{
+  font-family:'Playfair Display',serif;
+  font-size:26px;color:var(--cream);margin-bottom:8px;
+}
+.success p{font-size:15px;color:rgba(254,250,224,0.55);line-height:1.7;}
+
+@media(max-width:480px){
+  .wordmark{font-size:32px;}
+  .tagline{font-size:19px;}
+}
+
+/* ── HERO ENTRANCE ANIMATIES ── */
+.wordmark { opacity:0; transform:translateY(14px); animation: wIn 0.7s 0.2s cubic-bezier(0.22,1,0.36,1) forwards; }
+.tagline   { opacity:0; transform:translateY(12px); animation: wIn 0.65s 0.42s cubic-bezier(0.22,1,0.36,1) forwards; }
+.sep       { opacity:0; animation: wIn 0.5s 0.62s cubic-bezier(0.22,1,0.36,1) forwards; }
+.sub       { opacity:0; transform:translateY(10px); animation: wIn 0.65s 0.78s cubic-bezier(0.22,1,0.36,1) forwards; }
+.prijs-badge { opacity:0; transform:translateY(10px); animation: wIn 0.65s 0.96s cubic-bezier(0.22,1,0.36,1) forwards; }
+.form      { opacity:0; transform:translateY(10px); animation: wIn 0.65s 1.12s cubic-bezier(0.22,1,0.36,1) forwards; }
+.disc      { opacity:0; animation: wIn 0.5s 1.3s cubic-bezier(0.22,1,0.36,1) forwards; }
+@keyframes wIn { to { opacity:1; transform:none; } }
+</style>
+</head>
+<body>
+<div class="bg"></div>
+<div class="bg-overlay"></div>
+
+<main class="page">
+  
+
+  <div class="wordmark">Tafel<span>Plan</span></div>
+  <div class="tagline">Rustige weken. Volle tafels.</div>
+
+  <div class="sep">
+    <div class="sep-line"></div>
+    <div class="sep-dot">◆</div>
+    <div class="sep-line"></div>
+  </div>
+
+  <p class="sub">
+    De Nederlandse gezinsapp die maaltijdplanning, boodschappenlijst en budgetbewaking combineert. Binnenkort beschikbaar.
+  </p>
+
+  <div class="prijs-badge">
+    <strong>€5,99/mnd voor altijd</strong>
+    <span class="dot"></span>
+    <span>Oprichtersprijs</span>
+  </div>
+
+  <div class="form" id="wachtlijst-form">
+    <input type="email" id="email-input" placeholder="jouw@emailadres.nl" autocomplete="email">
+    <button onclick="aanmelden()">Zet me op de wachtlijst</button>
+  </div>
+
+  <div class="success" id="success-msg">
+    <div class="success-icon">✓</div>
+    <h2>Je staat op de lijst.</h2>
+    <p>We sturen je een bericht zodra Tafelplan beschikbaar is — met jouw oprichtersprijs van €5,99/mnd vast voor altijd.</p>
+  </div>
+
+  <p class="disc">
+    Geen spam. Alleen één bericht bij lancering.<br>
+    Bij lancering wordt de prijs €7,99/mnd. Wachtlijstaanmelders houden hun oprichtersprijs levenslang vast.
+  </p>
+</main>
+
+<footer>
+  <a href="mailto:info@tafelplan.com">info@tafelplan.com</a>
+  &nbsp;·&nbsp; www.tafelplan.com
+  &nbsp;·&nbsp; Aerts Holding
+</footer>
+
+<script>
+function aanmelden() {
+  const email = document.getElementById('email-input').value;
+  const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!re.test(email)) {
+    document.getElementById('email-input').style.borderColor = 'rgba(220,80,80,0.5)';
+    document.getElementById('email-input').placeholder = 'Vul een geldig e-mailadres in';
+    return;
+  }
+  document.getElementById('wachtlijst-form').style.display = 'none';
+  document.getElementById('success-msg').style.display = 'block';
+  // Hier later Supabase/Mailchimp/Resend integratie
+  console.log('Aanmelding:', email);
+}
+document.getElementById('email-input').addEventListener('keypress', function(e) {
+  if (e.key === 'Enter') aanmelden();
+});
+</script>
+
+</body></html>
