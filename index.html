@@ -29,7 +29,7 @@ body{
 }
 .bg-overlay{
   position:fixed;inset:0;z-index:1;
-  background:linear-gradient(105deg,rgba(7,13,9,0.88) 0%,rgba(7,13,9,0.65) 50%,rgba(7,13,9,0.45) 100%);
+  background:rgba(0,0,0,0.55);
 }
 
 /* Content */
@@ -115,6 +115,8 @@ body{
   border-color:rgba(233,196,106,0.45);
   background:rgba(254,250,224,0.14);
 }
+input:invalid{box-shadow:none;outline:none;border-color:rgba(254,250,224,0.2);}
+input:required{box-shadow:none;}
 .form button{
   width:100%;padding:14px;
   background:var(--gold);
@@ -162,13 +164,13 @@ footer a{color:rgba(254,250,224,0.3);text-decoration:none;}
 }
 
 /* ── HERO ENTRANCE ANIMATIES ── */
-.wordmark { opacity:0; transform:translateY(14px); animation: wIn 0.7s 0.2s cubic-bezier(0.22,1,0.36,1) forwards; }
-.tagline   { opacity:0; transform:translateY(12px); animation: wIn 0.65s 0.42s cubic-bezier(0.22,1,0.36,1) forwards; }
-.sep       { opacity:0; animation: wIn 0.5s 0.62s cubic-bezier(0.22,1,0.36,1) forwards; }
-.sub       { opacity:0; transform:translateY(10px); animation: wIn 0.65s 0.78s cubic-bezier(0.22,1,0.36,1) forwards; }
-.prijs-badge { opacity:0; transform:translateY(10px); animation: wIn 0.65s 0.96s cubic-bezier(0.22,1,0.36,1) forwards; }
-.form      { opacity:0; transform:translateY(10px); animation: wIn 0.65s 1.12s cubic-bezier(0.22,1,0.36,1) forwards; }
-.disc      { opacity:0; animation: wIn 0.5s 1.3s cubic-bezier(0.22,1,0.36,1) forwards; }
+.wordmark    { opacity:0; transform:translateY(14px); animation: wIn 1.05s 0.30s cubic-bezier(0.22,1,0.36,1) forwards; }
+.tagline     { opacity:0; transform:translateY(12px); animation: wIn 0.98s 0.63s cubic-bezier(0.22,1,0.36,1) forwards; }
+.sep         { opacity:0; animation: wIn 0.75s 0.93s cubic-bezier(0.22,1,0.36,1) forwards; }
+.sub         { opacity:0; transform:translateY(10px); animation: wIn 0.98s 1.17s cubic-bezier(0.22,1,0.36,1) forwards; }
+.prijs-badge { opacity:0; transform:translateY(10px); animation: wIn 0.98s 1.44s cubic-bezier(0.22,1,0.36,1) forwards; }
+.form        { opacity:0; transform:translateY(10px); animation: wIn 0.98s 1.68s cubic-bezier(0.22,1,0.36,1) forwards; }
+.disc        { opacity:0; animation: wIn 0.75s 1.95s cubic-bezier(0.22,1,0.36,1) forwards; }
 @keyframes wIn { to { opacity:1; transform:none; } }
 </style>
 </head>
@@ -226,7 +228,7 @@ function aanmelden() {
   const email = document.getElementById('email-input').value;
   const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   if (!re.test(email)) {
-    document.getElementById('email-input').style.borderColor = 'rgba(220,80,80,0.5)';
+    document.getElementById('email-input').style.borderColor = 'rgba(233,196,106,0.6)';
     document.getElementById('email-input').placeholder = 'Vul een geldig e-mailadres in';
     return;
   }
