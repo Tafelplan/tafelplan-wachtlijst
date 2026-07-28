@@ -46,6 +46,7 @@ export default async function handler(req, res) {
           'apikey': process.env.SUPABASE_SERVICE_ROLE_KEY,
           'Authorization': `Bearer ${process.env.SUPABASE_SERVICE_ROLE_KEY}`,
           'Prefer': 'resolution=ignore-duplicates',
+          'Accept': 'application/json',
         },
         body: JSON.stringify({ email }),
       }
