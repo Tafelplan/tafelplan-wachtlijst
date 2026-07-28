@@ -65,8 +65,32 @@ export default async function handler(req, res) {
       },
       body: JSON.stringify({
         to: [{ email }],
-        templateId: 4,
         sender: { name: 'Tafelplan', email: 'info@tafelplan.com' },
+        subject: 'Je staat op de lijst 🎉',
+        htmlContent: `
+          <div style="background:#FEFAE0;font-family:Georgia,serif;max-width:600px;margin:0 auto;">
+            <div style="background:#1B4332;padding:32px;text-align:center;border-bottom:4px solid #C9A84C;">
+              <span style="color:#ffffff;font-size:28px;">Tafel</span><span style="color:#C9A84C;font-size:28px;">Plan</span>
+            </div>
+            <div style="padding:40px 32px;background:#FEFAE0;">
+              <p style="color:#1A1A1A;font-size:16px;line-height:1.8;">Hoi!</p>
+              <p style="color:#1A1A1A;font-size:16px;line-height:1.8;">Welkom op de wachtlijst van Tafelplan 🎉</p>
+              <p style="color:#1A1A1A;font-size:16px;line-height:1.8;">Geen gedoe meer met "wat eten we vanavond?" en boodschappenlijsten die nergens kloppen. Tafelplan is dé Nederlandse app die maaltijdplanning, boodschappenlijst en budgetbewaking samenvoegt in één overzichtelijke app — zodat jij gewoon kunt genieten van rustige weken en volle tafels.</p>
+              <p style="color:#1A1A1A;font-size:16px;line-height:1.8;">We zijn bijna klaar. En jij bent er vroeg bij.</p>
+              <p style="color:#1A1A1A;font-size:16px;line-height:1.8;">
+                Wat je kunt verwachten:<br>
+                &rarr; Je krijgt als eerste bericht wanneer Tafelplan live gaat<br>
+                &rarr; Als wachtlijstaanmelder betaal je nooit meer dan &euro;5,99/mnd &mdash; voor altijd<br>
+                &rarr; Geen spam. Geen nieuwsbrieven. Eén bericht bij lancering.
+              </p>
+              <p style="color:#1A1A1A;font-size:16px;line-height:1.8;">We kunnen niet wachten om je te laten zien wat we hebben gebouwd.</p>
+              <p style="color:#1A1A1A;font-size:16px;line-height:1.8;">Tot snel!<br><br>Team Tafelplan<br>info@tafelplan.com</p>
+            </div>
+            <div style="background:#1B4332;padding:16px;text-align:center;border-top:2px solid #C9A84C;">
+              <span style="color:#FEFAE0;font-size:13px;font-style:italic;">Rustige weken. Volle tafels.</span>
+            </div>
+          </div>
+        `,
       }),
     });
 
