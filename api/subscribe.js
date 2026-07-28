@@ -10,7 +10,7 @@ export default async function handler(req, res) {
   }
 
   try {
-    // 1. Opslaan in Brevo
+    // 1. Brevo
     const brevoResponse = await fetch('https://api.brevo.com/v3/contacts', {
       method: 'POST',
       headers: {
@@ -27,15 +27,16 @@ export default async function handler(req, res) {
 
     if (brevoResponse.status !== 201 && brevoResponse.status !== 204) {
       const data = await brevoResponse.json();
-      return res.status(400).json({
-        error: 'Brevo fout',
-        status: brevoResponse.status,
-        message: data.message,
-        code: data.code
-      });
+      if (!data.message?.includes('already exist')) {
+        return res.status(400).json({
+          error: 'Brevo fout',
+          status: brevoResponse.status,
+          message: data.message
+        });
+      }
     }
 
-    // 2. Opslaan in Supabase
+    // 2. Supabase
     const supabaseResponse = await fetch(
       `${process.env.SUPABASE_URL}/rest/v1/wachtlijst`,
       {
@@ -62,6 +63,10 @@ export default async function handler(req, res) {
     return res.status(200).json({ success: true });
 
   } catch (error) {
-    return res.status(500).json({ error: 'Serverfout' });
+    return res.status(500).json({
+      error: 'Catch fout',
+      message: error.message,
+      stack: error.stack
+    });
   }
 }
