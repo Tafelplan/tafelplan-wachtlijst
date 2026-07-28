@@ -10,44 +10,7 @@ export default async function handler(req, res) {
   }
 
   try {
-    const supabaseUrl = process.env.SUPABASE_URL;
-    const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
-
-    return res.status(200).json({
-      debug: true,
-      urlLength: supabaseUrl?.length,
-      urlFirst20: supabaseUrl?.substring(0, 20),
-      keyLength: supabaseKey?.length,
-      keyFirst10: supabaseKey?.substring(0, 10),
-    });
-
-    // 1. Brevo
-    const brevoResponse = await fetch('https://api.brevo.com/v3/contacts', {
-      method: 'POST',
-      headers: {
-        'accept': 'application/json',
-        'content-type': 'application/json',
-        'api-key': process.env.BREVO_API_KEY,
-      },
-      body: JSON.stringify({
-        email,
-        listIds: [3],
-        updateEnabled: true,
-      }),
-    });
-
-    if (brevoResponse.status !== 201 && brevoResponse.status !== 204) {
-      const data = await brevoResponse.json();
-      if (!data.message?.includes('already exist')) {
-        return res.status(400).json({
-          error: 'Brevo fout',
-          status: brevoResponse.status,
-          message: data.message
-        });
-      }
-    }
-
-    // 2. Supabase
+    // 1. Supabase eerst
     const supabaseResponse = await fetch(
       `${process.env.SUPABASE_URL}/rest/v1/wachtlijst`,
       {
@@ -65,20 +28,34 @@ export default async function handler(req, res) {
 
     if (!supabaseResponse.ok && supabaseResponse.status !== 409) {
       const supabaseData = await supabaseResponse.text();
-      return res.status(500).json({
-        error: 'Supabase fout',
-        status: supabaseResponse.status,
-        details: supabaseData
-      });
+      return res.status(500).json({ error: 'Opslaan mislukt' });
+    }
+
+    // 2. Dan Brevo
+    const brevoResponse = await fetch('https://api.brevo.com/v3/contacts', {
+      method: 'POST',
+      headers: {
+        'accept': 'application/json',
+        'content-type': 'application/json',
+        'api-key': process.env.BREVO_API_KEY,
+      },
+      body: JSON.stringify({
+        email,
+        listIds: [3],
+        updateEnabled: true,
+      }),
+    });
+
+    if (brevoResponse.status !== 201 && brevoResponse.status !== 204) {
+      const data = await brevoResponse.json();
+      if (!data.message?.includes('already exist')) {
+        return res.status(400).json({ error: 'Aanmelding mislukt' });
+      }
     }
 
     return res.status(200).json({ success: true });
 
   } catch (error) {
-    return res.status(500).json({
-      error: 'Catch fout',
-      message: error.message,
-      stack: error.stack
-    });
+    return res.status(500).json({ error: 'Serverfout', message: error.message });
   }
 }
