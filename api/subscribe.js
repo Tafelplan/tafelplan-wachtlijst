@@ -42,6 +42,9 @@ export default async function handler(req, res) {
         email,
         listIds: [3],
         updateEnabled: true,
+        attributes: {
+          OPT_IN: true,
+        },
       }),
     });
 
