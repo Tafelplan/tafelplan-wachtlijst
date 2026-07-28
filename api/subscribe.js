@@ -10,6 +10,17 @@ export default async function handler(req, res) {
   }
 
   try {
+    const supabaseUrl = process.env.SUPABASE_URL;
+    const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
+
+    return res.status(200).json({
+      debug: true,
+      urlLength: supabaseUrl?.length,
+      urlFirst20: supabaseUrl?.substring(0, 20),
+      keyLength: supabaseKey?.length,
+      keyFirst10: supabaseKey?.substring(0, 10),
+    });
+
     // 1. Brevo
     const brevoResponse = await fetch('https://api.brevo.com/v3/contacts', {
       method: 'POST',
