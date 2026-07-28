@@ -10,7 +10,8 @@ export default async function handler(req, res) {
   }
 
   try {
-    const response = await fetch('https://api.brevo.com/v3/contacts', {
+    // 1. Opslaan in Brevo
+    const brevoResponse = await fetch('https://api.brevo.com/v3/contacts', {
       method: 'POST',
       headers: {
         'accept': 'application/json',
@@ -24,12 +25,34 @@ export default async function handler(req, res) {
       }),
     });
 
-    if (response.status === 201 || response.status === 204) {
-      return res.status(200).json({ success: true });
+    if (brevoResponse.status !== 201 && brevoResponse.status !== 204) {
+      const data = await brevoResponse.json();
+      // Negeer "already exists" fout — e-mailadres staat al in de lijst
+      if (!data.message?.includes('already exist')) {
+        return res.status(400).json({ error: data.message || 'Brevo aanmelding mislukt' });
+      }
     }
 
-    const data = await response.json();
-    return res.status(400).json({ error: data.message || 'Aanmelding mislukt' });
+    // 2. Opslaan in Supabase
+    const supabaseResponse = await fetch(
+      `${process.env.SUPABASE_URL}/rest/v1/wachtlijst`,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'apikey': process.env.SUPABASE_SERVICE_ROLE_KEY,
+          'Authorization': `Bearer ${process.env.SUPABASE_SERVICE_ROLE_KEY}`,
+          'Prefer': 'resolution=ignore-duplicates',
+        },
+        body: JSON.stringify({ email }),
+      }
+    );
+
+    if (!supabaseResponse.ok && supabaseResponse.status !== 409) {
+      return res.status(500).json({ error: 'Supabase opslag mislukt' });
+    }
+
+    return res.status(200).json({ success: true });
 
   } catch (error) {
     return res.status(500).json({ error: 'Serverfout' });
