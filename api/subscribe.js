@@ -27,11 +27,12 @@ export default async function handler(req, res) {
 
     if (brevoResponse.status !== 201 && brevoResponse.status !== 204) {
       const data = await brevoResponse.json();
-      console.log('Brevo error:', JSON.stringify(data));
-      // Negeer "already exists" fout — e-mailadres staat al in de lijst
-      if (!data.message?.includes('already exist')) {
-        return res.status(400).json({ error: data.message || 'Brevo aanmelding mislukt' });
-      }
+      return res.status(400).json({
+        error: 'Brevo fout',
+        status: brevoResponse.status,
+        message: data.message,
+        code: data.code
+      });
     }
 
     // 2. Opslaan in Supabase
@@ -51,8 +52,11 @@ export default async function handler(req, res) {
 
     if (!supabaseResponse.ok && supabaseResponse.status !== 409) {
       const supabaseData = await supabaseResponse.text();
-      console.log('Supabase error:', supabaseData, 'status:', supabaseResponse.status);
-      return res.status(500).json({ error: 'Supabase opslag mislukt' });
+      return res.status(500).json({
+        error: 'Supabase fout',
+        status: supabaseResponse.status,
+        details: supabaseData
+      });
     }
 
     return res.status(200).json({ success: true });

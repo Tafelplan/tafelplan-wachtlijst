@@ -259,7 +259,7 @@ async function aanmelden() {
     } else {
       knop.textContent = 'Zet me op de wachtlijst';
       knop.disabled = false;
-      alert('Er ging iets mis. Probeer het opnieuw.');
+      alert(JSON.stringify(data));
     }
   } catch (error) {
     knop.textContent = 'Zet me op de wachtlijst';
