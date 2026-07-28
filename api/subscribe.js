@@ -55,6 +55,21 @@ export default async function handler(req, res) {
       }
     }
 
+    // 3. Bevestigingsmail sturen
+    await fetch('https://api.brevo.com/v3/smtp/email', {
+      method: 'POST',
+      headers: {
+        'accept': 'application/json',
+        'content-type': 'application/json',
+        'api-key': process.env.BREVO_API_KEY,
+      },
+      body: JSON.stringify({
+        to: [{ email }],
+        templateId: 4,
+        sender: { name: 'Tafelplan', email: 'info@tafelplan.com' },
+      }),
+    });
+
     return res.status(200).json({ success: true });
 
   } catch (error) {
