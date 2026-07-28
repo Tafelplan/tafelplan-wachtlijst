@@ -28,7 +28,11 @@ export default async function handler(req, res) {
 
     if (!supabaseResponse.ok && supabaseResponse.status !== 409) {
       const supabaseData = await supabaseResponse.text();
-      return res.status(500).json({ error: 'Opslaan mislukt' });
+      return res.status(500).json({
+        error: 'Supabase fout',
+        status: supabaseResponse.status,
+        details: supabaseData
+      });
     }
 
     // 2. Dan Brevo
@@ -56,6 +60,9 @@ export default async function handler(req, res) {
     return res.status(200).json({ success: true });
 
   } catch (error) {
-    return res.status(500).json({ error: 'Serverfout', message: error.message });
+    return res.status(500).json({
+      error: 'Catch fout',
+      message: error.message
+    });
   }
 }
