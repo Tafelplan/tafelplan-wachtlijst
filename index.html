@@ -231,7 +231,7 @@ footer a{color:rgba(254,250,224,0.3);text-decoration:none;}
 </footer>
 
 <script>
-function aanmelden() {
+async function aanmelden() {
   const email = document.getElementById('email-input').value;
   const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   if (!re.test(email)) {
@@ -239,10 +239,33 @@ function aanmelden() {
     document.getElementById('email-input').placeholder = 'Vul een geldig e-mailadres in';
     return;
   }
-  document.getElementById('wachtlijst-form').style.display = 'none';
-  document.getElementById('success-msg').style.display = 'block';
-  // Hier later Supabase/Mailchimp/Resend integratie
-  console.log('Aanmelding:', email);
+
+  const knop = document.querySelector('#wachtlijst-form button');
+  knop.textContent = 'Even geduld...';
+  knop.disabled = true;
+
+  try {
+    const response = await fetch('/api/subscribe', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email }),
+    });
+
+    const data = await response.json();
+
+    if (data.success) {
+      document.getElementById('wachtlijst-form').style.display = 'none';
+      document.getElementById('success-msg').style.display = 'block';
+    } else {
+      knop.textContent = 'Zet me op de wachtlijst';
+      knop.disabled = false;
+      alert('Er ging iets mis. Probeer het opnieuw.');
+    }
+  } catch (error) {
+    knop.textContent = 'Zet me op de wachtlijst';
+    knop.disabled = false;
+    alert('Er ging iets mis. Probeer het opnieuw.');
+  }
 }
 document.getElementById('email-input').addEventListener('keypress', function(e) {
   if (e.key === 'Enter') aanmelden();
