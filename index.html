@@ -256,7 +256,6 @@ async function aanmelden() {
     if (data.success) {
       document.getElementById('wachtlijst-form').style.display = 'none';
       document.getElementById('success-msg').style.display = 'block';
-      alert('Mail status: ' + data.mailStatus + ' | ' + JSON.stringify(data.mailResponse));
     } else {
       knop.textContent = 'Zet me op de wachtlijst';
       knop.disabled = false;

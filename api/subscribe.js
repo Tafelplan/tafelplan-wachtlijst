@@ -56,7 +56,7 @@ export default async function handler(req, res) {
     }
 
     // 3. Bevestigingsmail sturen
-    const mailResponse = await fetch('https://api.brevo.com/v3/smtp/email', {
+    await fetch('https://api.brevo.com/v3/smtp/email', {
       method: 'POST',
       headers: {
         'accept': 'application/json',
@@ -94,12 +94,7 @@ export default async function handler(req, res) {
       }),
     });
 
-    const mailData = await mailResponse.json();
-    return res.status(200).json({
-      success: true,
-      mailStatus: mailResponse.status,
-      mailResponse: mailData
-    });
+    return res.status(200).json({ success: true });
 
   } catch (error) {
     return res.status(500).json({ error: 'Serverfout' });
