@@ -12,21 +12,23 @@
 
 body {
   min-height: 100vh;
+  margin: 0;
+  padding: 0;
   background: #0d0a04;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   font-family: 'DM Sans', sans-serif;
-  overflow: hidden;
+  overflow-x: hidden;
 }
 
 .hero {
   position: relative;
   width: 100vw;
-  min-height: 100vh;
+  min-height: 100svh;
   display: flex;
   align-items: center;
   justify-content: center;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+  box-sizing: border-box;
 }
 
 .hero-bg {
@@ -54,7 +56,7 @@ body {
   position: relative;
   z-index: 2;
   text-align: center;
-  padding: 3rem 1.5rem;
+  padding: 4rem 1.5rem 3rem;
   max-width: 520px;
   width: 100%;
 }
