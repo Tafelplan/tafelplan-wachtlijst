@@ -4,231 +4,301 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Tafelplan — Wachtlijst</title>
-<link href="./Tafelplan — Wachtlijst_files/css2" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-:root{
-  --forest:#1B4332;--sage:#40916C;--gold:#E9C46A;--gold2:#d4a84b;
-  --cream:#FEFAE0;--cream2:#f5f0d0;--hout:#3B2F25;
-}
-html,body{height:100%;}
-body{
-  font-family:'DM Sans',sans-serif;font-weight:300;
-  -webkit-font-smoothing:antialiased;
-  background:var(--cream);
-  color:var(--forest);
-  min-height:100vh;
-  display:flex;flex-direction:column;
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  min-height: 100vh;
+  background: #0d0a04;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'DM Sans', sans-serif;
+  overflow: hidden;
 }
 
-/* Achtergrond merkfoto met overlay */
-.bg{
-  position:fixed;inset:0;z-index:0;
-  background-image:url('https://zqnpzbfocxowywrwfveu.supabase.co/storage/v1/render/image/public/recepten-fotos/landing/hero-wachtlijst-v2.webp?width=1400&quality=80');
-  background-size:cover;background-position:center 30%;
-}
-.bg-overlay{
-  position:fixed;inset:0;z-index:1;
-  background:rgba(0,0,0,0.55);
+.hero {
+  position: relative;
+  width: 100vw;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-/* Content */
-.page{
-  position:relative;z-index:2;
-  min-height:100vh;
-  display:flex;flex-direction:column;
-  align-items:center;justify-content:center;
-  padding:48px 24px;
-  text-align:center;
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background-image: url('https://zqnpzbfocxowywrwfveu.supabase.co/storage/v1/render/image/public/recepten-fotos/landing/hero-wachtlijst-v2.webp?width=1400&quality=80');
+  background-size: cover;
+  background-position: center;
+  z-index: 0;
 }
 
-/* Logo */
-.logo{
-  width:72px;height:72px;object-fit:contain;
-  margin:0 auto 32px;display:block;
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(10,8,4,0.52) 0%,
+    rgba(15,11,5,0.70) 50%,
+    rgba(10,8,4,0.88) 100%
+  );
+  z-index: 1;
 }
 
-/* Wordmark */
-.wordmark{
-  font-family:'Playfair Display',serif;
-  font-size:40px;font-weight:500;
-  color:var(--cream);letter-spacing:-0.5px;
-  margin-bottom:4px;
-  line-height:1;
-}
-.wordmark span{color:var(--gold);}
-
-/* Tagline */
-.tagline{
-  font-family:'Cormorant Garamond',serif;
-  font-size:16px;font-weight:300;font-style:italic;
-  color:rgba(254,250,224,0.65);
-  margin-bottom:36px;
+.content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: 3rem 1.5rem;
+  max-width: 520px;
+  width: 100%;
 }
 
-/* Separator */
-.sep{
-  display:flex;align-items:center;gap:12px;
-  justify-content:center;margin-bottom:36px;
-}
-.sep-line{width:48px;height:1px;background:rgba(233,196,106,0.3);}
-.sep-dot{font-size:14px;color:rgba(233,196,106,0.5);}
-
-/* Sub */
-.sub{
-  font-size:16px;line-height:1.75;
-  color:rgba(254,250,224,1.0);
-  max-width:420px;margin:0 auto 48px;
+.ornament {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 2rem;
 }
 
-/* Prijs badge */
-.prijs-badge{
-  display:inline-flex;align-items:center;gap:8px;
-  background:rgba(233,196,106,0.12);
-  border:0.5px solid rgba(233,196,106,0.28);
-  border-radius:100px;
-  padding:8px 18px;
-  margin-bottom:32px;
-  font-size:13px;color:var(--gold);
-}
-.prijs-badge strong{font-weight:500;}
-.prijs-badge .dot{width:4px;height:4px;border-radius:50%;background:rgba(233,196,106,0.4);}
-
-/* Formulier */
-.form{
-  width:100%;max-width:400px;
-  display:flex;flex-direction:column;gap:10px;
-  margin:0 auto 24px;
-}
-.form input{
-  width:100%;padding:14px 18px;
-  background:rgba(255,255,255,0.15);
-  border:1px solid rgba(233,196,106,0.6);
-  border-radius:100px;
-  font-family:'DM Sans',sans-serif;
-  font-size:15px;color:var(--cream);
-  outline:none;
-  transition:border-color 0.2s,background 0.2s;
-}
-.form input::placeholder{color:rgba(254,250,224,0.35);}
-.form input:focus{
-  border-color:rgba(233,196,106,0.45);
-  background:rgba(254,250,224,0.14);
-}
-input:invalid{box-shadow:none;outline:none;border-color:rgba(254,250,224,0.2);}
-input:required{box-shadow:none;}
-.form button{
-  width:100%;padding:14px;
-  background:var(--gold);
-  border:none;border-radius:100px;
-  font-family:'DM Sans',sans-serif;
-  font-size:15px;font-weight:500;
-  color:var(--forest);
-  cursor:pointer;
-  transition:background 0.2s,transform 0.15s;
-}
-.form button:hover{background:#f0cc72;transform:translateY(-1px);}
-.form button:active{transform:translateY(0);}
-
-/* Disclaimer */
-.disc{
-  font-size:12px;color:rgba(254,250,224,0.75);
-  line-height:1.65;max-width:360px;margin:0 auto;
+.ornament-line {
+  width: 48px;
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(201,168,76,0.5));
 }
 
-/* Footer */
-footer{
-  position:relative;z-index:2;
-  padding:20px 24px;text-align:center;
-  font-size:11px;color:rgba(254,250,224,0.22);
-  letter-spacing:0.5px;
-}
-footer a{color:rgba(254,250,224,0.3);text-decoration:none;}
-
-/* Success state */
-.success{
-  display:none;
-  text-align:center;
-  padding:28px 24px;
-}
-.success-icon{font-size:48px;margin-bottom:16px;}
-.success h2{
-  font-family:'Playfair Display',serif;
-  font-size:26px;color:var(--cream);margin-bottom:8px;
-}
-.success p{font-size:15px;color:rgba(254,250,224,0.55);line-height:1.7;}
-
-@media(max-width:480px){
-  .wordmark{font-size:52px;}
+.ornament-line.right {
+  background: linear-gradient(to left, transparent, rgba(201,168,76,0.5));
 }
 
-/* ── HERO ENTRANCE ANIMATIES ── */
-.wordmark    { opacity:0; transform:translateY(14px); animation: wIn 1.05s 0.30s cubic-bezier(0.22,1,0.36,1) forwards; }
-.tagline     { opacity:0; transform:translateY(12px); animation: wIn 0.98s 0.63s cubic-bezier(0.22,1,0.36,1) forwards; }
-.sep         { opacity:0; animation: wIn 0.75s 0.93s cubic-bezier(0.22,1,0.36,1) forwards; }
-.sub         { opacity:0; transform:translateY(10px); animation: wIn 0.98s 1.17s cubic-bezier(0.22,1,0.36,1) forwards; }
-.prijs-badge { opacity:0; transform:translateY(10px); animation: wIn 0.98s 1.44s cubic-bezier(0.22,1,0.36,1) forwards; }
-.form        { opacity:0; transform:translateY(10px); animation: wIn 0.98s 1.68s cubic-bezier(0.22,1,0.36,1) forwards; }
-.disc        { opacity:0; animation: wIn 0.75s 1.95s cubic-bezier(0.22,1,0.36,1) forwards; }
-@keyframes wIn { to { opacity:1; transform:none; } }
+.ornament-diamond {
+  width: 6px;
+  height: 6px;
+  background: #C9A84C;
+  transform: rotate(45deg);
+}
+
+.logo {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.2rem, 5vw, 3rem);
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  line-height: 1;
+  margin-bottom: 0.4rem;
+}
+
+.logo-tafel { color: #ffffff; }
+.logo-plan { color: #C9A84C; }
+
+.tagline {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 0.95rem;
+  color: rgba(201,168,76,0.6);
+  letter-spacing: 0.04em;
+  margin-bottom: 2.5rem;
+}
+
+.divider {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(201,168,76,0.3), transparent);
+  margin-bottom: 2.5rem;
+}
+
+.headline {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.6rem, 4vw, 2.1rem);
+  font-weight: 400;
+  color: #ffffff;
+  line-height: 1.25;
+  margin-bottom: 0.5rem;
+}
+
+.headline-sub {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: clamp(1rem, 2.5vw, 1.2rem);
+  color: #C9A84C;
+  margin-bottom: 1.5rem;
+}
+
+.body-text {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 300;
+  color: rgba(255,255,255,0.6);
+  line-height: 1.8;
+  margin-bottom: 2rem;
+  letter-spacing: 0.01em;
+}
+
+.badges {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 2rem;
+}
+
+.badge {
+  font-size: 0.7rem;
+  color: rgba(201,168,76,0.75);
+  border: 1px solid rgba(201,168,76,0.22);
+  border-radius: 20px;
+  padding: 4px 12px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.badge-dot {
+  width: 3px;
+  height: 3px;
+  background: rgba(201,168,76,0.35);
+  border-radius: 50%;
+}
+
+.form-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 1.2rem;
+}
+
+#email-input {
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(201,168,76,0.3);
+  border-radius: 40px;
+  padding: 14px 22px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.9rem;
+  color: rgba(255,255,255,0.85);
+  text-align: center;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+#email-input::placeholder { color: rgba(255,255,255,0.35); }
+#email-input:focus { border-color: rgba(201,168,76,0.6); }
+
+.cta-btn {
+  background: #E9C46A;
+  border: none;
+  border-radius: 40px;
+  padding: 15px 22px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #1B4332;
+  cursor: pointer;
+  letter-spacing: 0.02em;
+  transition: opacity 0.2s;
+}
+
+.cta-btn:hover { opacity: 0.9; }
+.cta-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+
+.fine-print {
+  font-size: 0.75rem;
+  color: rgba(255,255,255,0.32);
+  line-height: 1.7;
+}
+
+.fine-print a {
+  color: rgba(201,168,76,0.6);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+#success-msg {
+  display: none;
+}
+
+.success-icon {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: #C9A84C;
+}
+
+.success-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.6rem;
+  color: #ffffff;
+  margin-bottom: 0.75rem;
+}
+
+.success-body {
+  font-size: 0.9rem;
+  font-weight: 300;
+  color: rgba(255,255,255,0.55);
+  line-height: 1.8;
+}
 </style>
 </head>
 <body>
-<div class="bg"></div>
-<div class="bg-overlay"></div>
+<div class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
 
-<main class="page">
-  
+  <div class="content">
+    <div class="ornament">
+      <div class="ornament-line"></div>
+      <div class="ornament-diamond"></div>
+      <div class="ornament-line right"></div>
+    </div>
 
-  <div class="wordmark">Tafel<span>Plan</span></div>
-  <div class="tagline">Rustige weken. Volle tafels.</div>
+    <div class="logo">
+      <span class="logo-tafel">Tafel</span><span class="logo-plan">Plan</span>
+    </div>
+    <div class="tagline">Rustige weken. Volle tafels.</div>
 
-  <div class="sep">
-    <div class="sep-line"></div>
-    <div class="sep-dot">◆</div>
-    <div class="sep-line"></div>
+    <div class="divider"></div>
+
+    <div class="headline">Wat eten we vanavond?</div>
+    <div class="headline-sub">Niemand weet het. Weer niet.</div>
+
+    <p class="body-text">
+      Tafelplan is de Nederlandse app die maaltijdplanning,<br>
+      boodschappenlijst en budgetbewaking samenvoegt.<br>
+      Zodat jij dat nooit meer hoeft af te vragen.
+    </p>
+
+    <div class="badges">
+      <span class="badge">weekmenu</span>
+      <div class="badge-dot"></div>
+      <span class="badge">boodschappenlijst</span>
+      <div class="badge-dot"></div>
+      <span class="badge">budget</span>
+    </div>
+
+    <div id="wachtlijst-form" class="form-wrap">
+      <input type="email" id="email-input" placeholder="jouw@emailadres.nl" autocomplete="email">
+      <button class="cta-btn" onclick="aanmelden()">Zet me op de wachtlijst</button>
+    </div>
+
+    <div id="success-msg">
+      <div class="success-icon">✦</div>
+      <div class="success-title">Je staat op de lijst.</div>
+      <p class="success-body">
+        Je ontvangt één bericht zodra Tafelplan live gaat.<br>
+        Geen spam. Beloofd.
+      </p>
+    </div>
+
+    <p class="fine-print">
+      Door je aan te melden ga je akkoord met onze <a href="https://app.tafelplan.com/privacy" target="_blank">privacyverklaring</a>.<br>
+      Geen spam. Alleen één bericht bij lancering.
+    </p>
   </div>
-
-  <p class="sub">
-    Dé Nederlandse gezinsapp die maaltijdplanning, boodschappenlijst en budgetbewaking combineert. Binnenkort beschikbaar.
-  </p>
-
-  <div class="prijs-badge">
-    <strong>€5,99/mnd voor altijd</strong>
-    <span class="dot"></span>
-    <span>Oprichtersprijs</span>
-  </div>
-
-  <div class="form" id="wachtlijst-form">
-    <input type="email" id="email-input" placeholder="jouw@emailadres.nl" autocomplete="email">
-    <button onclick="aanmelden()">Zet me op de wachtlijst</button>
-  </div>
-
-  <p style="font-size: 12px; color: rgba(255,255,255,0.6); margin-top: 8px; text-align: center;">
-    Door je aan te melden ga je akkoord met onze
-    <a href="https://app.tafelplan.com/privacy" target="_blank"
-       style="color: rgba(255,255,255,0.8); text-decoration: underline;">
-      privacyverklaring
-    </a>.
-  </p>
-
-  <div class="success" id="success-msg">
-    <div class="success-icon">✓</div>
-    <h2>Je staat op de lijst.</h2>
-    <p>We sturen je een bericht zodra Tafelplan beschikbaar is — met jouw oprichtersprijs van €5,99/mnd vast voor altijd.</p>
-  </div>
-
-  <p class="disc">
-    Geen spam. Alleen één bericht bij lancering.<br>
-    Bij lancering wordt de prijs €7,99/mnd. Wachtlijstaanmelders houden hun oprichtersprijs levenslang vast.
-  </p>
-</main>
-
-<footer>
-  <a href="mailto:info@tafelplan.com">info@tafelplan.com</a>
-  &nbsp;·&nbsp; www.tafelplan.com
-  &nbsp;·&nbsp; Aerts Holding
-</footer>
+</div>
 
 <script>
 async function aanmelden() {
