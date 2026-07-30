@@ -313,6 +313,8 @@ body {
 .headline-sub,
 .body-text,
 .rust-tekst,
+.tafelplan-zin,
+.rust-zin,
 .cta-text,
 .form-wrap,
 .fine-print,
@@ -331,13 +333,14 @@ body {
 .headline     { animation: zoomFade 1.6s ease forwards; animation-delay: 1.8s; }
 .headline-sub { animation: zoomFade 1.4s ease forwards; animation-delay: 2.2s; }
 
-/* Akte 3 — het antwoord en uitnodiging, fade-up vlot */
-.body-text    { animation: fadeUp 0.6s ease forwards; animation-delay: 3.2s; }
-.rust-tekst   { animation: fadeUp 0.6s ease forwards; animation-delay: 3.3s; }
-.cta-text     { animation: fadeUp 0.6s ease forwards; animation-delay: 3.4s; }
-.form-wrap    { animation: fadeUp 0.6s ease forwards; animation-delay: 3.5s; }
-.fine-print   { animation: fadeUp 0.6s ease forwards; animation-delay: 3.6s; }
-.fine-sub     { animation: fadeUp 0.6s ease forwards; animation-delay: 3.7s; }
+/* Akte 3 — antwoord en uitnodiging, elk als aparte beat */
+.body-text      { animation: fadeUp 1.2s ease forwards; animation-delay: 4.2s; }
+.tafelplan-zin  { animation: fadeUp 1.2s ease forwards; animation-delay: 5.0s; }
+.rust-zin       { animation: fadeUp 1.2s ease forwards; animation-delay: 5.8s; }
+.cta-text       { animation: fadeUp 1.2s ease forwards; animation-delay: 6.6s; }
+.form-wrap      { animation: fadeUp 1.4s ease forwards; animation-delay: 7.4s; }
+.fine-print     { animation: fadeUp 1.4s ease forwards; animation-delay: 8.2s; }
+.fine-sub       { animation: fadeUp 1.4s ease forwards; animation-delay: 8.6s; }
 </style>
 </head>
 <body>
@@ -366,11 +369,11 @@ body {
       Hoe zou je het vinden als jouw <strong style="color:#E9C46A;font-weight:500;">weekmenu</strong>, <strong style="color:#E9C46A;font-weight:500;">boodschappenlijst</strong> en <strong style="color:#E9C46A;font-weight:500;">budgetbewaking</strong> in 15 minuten geregeld is?
     </p>
 
-    <p style="font-family:'DM Sans',sans-serif;font-size:1rem;font-weight:400;color:rgba(255,255,255,0.72);line-height:1.8;margin-bottom:0.1rem;" class="rust-tekst">
+    <p style="font-family:'DM Sans',sans-serif;font-size:1rem;font-weight:400;color:rgba(255,255,255,0.72);line-height:1.8;margin-bottom:0.1rem;" class="rust-tekst tafelplan-zin">
       <span style="color:rgba(255,255,255,0.72);">TafelPlan</span> maakt het mogelijk.
     </p>
 
-    <p style="font-family:'DM Sans',sans-serif;font-size:1rem;font-weight:400;color:rgba(255,255,255,0.72);line-height:1.8;margin-bottom:1.4rem;" class="rust-tekst">
+    <p style="font-family:'DM Sans',sans-serif;font-size:1rem;font-weight:400;color:rgba(255,255,255,0.72);line-height:1.8;margin-bottom:1.4rem;" class="rust-tekst rust-zin">
       Meer rust in je hoofd. Meer tijd in je dag.
     </p>
 
