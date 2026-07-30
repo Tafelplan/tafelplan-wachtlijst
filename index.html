@@ -293,6 +293,18 @@ body {
   100% { background-position: 200% center; }
 }
 
+/* Zoom-fade op logo en merk */
+@keyframes zoomFade {
+  from {
+    opacity: 0;
+    transform: scale(0.85);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
 .ornament,
 .logo,
 .tagline,
@@ -322,10 +334,25 @@ body {
 .fine-sub     { animation-delay: 3.8s;  animation-duration: 1.0s; }
 
 /* Fase 3 — het merk als laatste */
-.ornament     { animation-delay: 4.4s;  animation-duration: 1.2s; }
-.logo         { animation-delay: 4.7s;  animation-duration: 1.2s; }
-.tagline      { animation-delay: 5.0s;  animation-duration: 1.2s; }
-.divider      { animation-delay: 5.2s;  animation-duration: 1.0s; }
+.ornament {
+  animation: zoomFade 1.6s ease forwards;
+  animation-delay: 4.4s;
+}
+
+.logo {
+  animation: zoomFade 1.8s ease forwards;
+  animation-delay: 4.7s;
+}
+
+.tagline {
+  animation: zoomFade 1.6s ease forwards;
+  animation-delay: 5.0s;
+}
+
+.divider {
+  animation: zoomFade 1.4s ease forwards;
+  animation-delay: 5.2s;
+}
 </style>
 </head>
 <body>
