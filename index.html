@@ -321,36 +321,23 @@ body {
   animation: fadeUp 1.0s ease forwards;
 }
 
-/* Akte 1+2 — vraag en antwoord als één vloeiend geheel */
-.headline     { animation-delay: 0.2s;  animation-duration: 0.8s; }
-.headline-sub { animation-delay: 0.6s;  animation-duration: 0.8s; }
-.body-text    { animation-delay: 1.0s;  animation-duration: 0.8s; }
-.rust-tekst   { animation-delay: 1.2s;  animation-duration: 0.8s; }
-.cta-text     { animation-delay: 1.4s;  animation-duration: 0.8s; }
-.form-wrap    { animation-delay: 1.6s;  animation-duration: 0.8s; }
-.fine-print   { animation-delay: 1.8s;  animation-duration: 0.8s; }
-.fine-sub     { animation-delay: 1.9s;  animation-duration: 0.8s; }
+/* Akte 1 — het merk eerst, zoom-fade */
+.ornament     { animation: zoomFade 1.6s ease forwards; animation-delay: 0.2s; }
+.logo         { animation: zoomFade 1.8s ease forwards; animation-delay: 0.5s; }
+.tagline      { animation: zoomFade 1.6s ease forwards; animation-delay: 0.8s; }
+.divider      { animation: zoomFade 1.4s ease forwards; animation-delay: 1.0s; }
 
-/* Akte 2 — het merk als filmische afsluiter */
-.ornament {
-  animation: zoomFade 1.6s ease forwards;
-  animation-delay: 3.0s;
-}
+/* Akte 2 — de vraag, ook zoom-fade */
+.headline     { animation: zoomFade 1.6s ease forwards; animation-delay: 1.8s; }
+.headline-sub { animation: zoomFade 1.4s ease forwards; animation-delay: 2.2s; }
 
-.logo {
-  animation: zoomFade 1.8s ease forwards;
-  animation-delay: 3.2s;
-}
-
-.tagline {
-  animation: zoomFade 1.6s ease forwards;
-  animation-delay: 3.5s;
-}
-
-.divider {
-  animation: zoomFade 1.4s ease forwards;
-  animation-delay: 3.7s;
-}
+/* Akte 3 — het antwoord en uitnodiging, fade-up vlot */
+.body-text    { animation: fadeUp 0.6s ease forwards; animation-delay: 3.2s; }
+.rust-tekst   { animation: fadeUp 0.6s ease forwards; animation-delay: 3.3s; }
+.cta-text     { animation: fadeUp 0.6s ease forwards; animation-delay: 3.4s; }
+.form-wrap    { animation: fadeUp 0.6s ease forwards; animation-delay: 3.5s; }
+.fine-print   { animation: fadeUp 0.6s ease forwards; animation-delay: 3.6s; }
+.fine-sub     { animation: fadeUp 0.6s ease forwards; animation-delay: 3.7s; }
 </style>
 </head>
 <body>
