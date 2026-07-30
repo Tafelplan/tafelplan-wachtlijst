@@ -300,32 +300,32 @@ body {
 .headline,
 .headline-sub,
 .body-text,
+.rust-tekst,
 .cta-text,
 .form-wrap,
-.fine-print {
+.fine-print,
+.fine-sub {
   opacity: 0;
   animation: fadeUp 1.0s ease forwards;
 }
 
-/* Fase 1 — de vraag eerst */
+/* Fase 1 — het probleem */
 .headline     { animation-delay: 0.2s;  animation-duration: 1.4s; }
 .headline-sub { animation-delay: 0.9s;  animation-duration: 1.4s; }
 
-/* Fase 2 — merk en content daarna */
-.ornament     { animation-delay: 2.0s;  animation-duration: 1.2s; }
-.logo         { animation-delay: 2.3s;  animation-duration: 1.2s; }
-.tagline      { animation-delay: 2.6s;  animation-duration: 1.2s; }
-.divider      { animation-delay: 2.8s;  animation-duration: 1.0s; }
-.body-text    { animation-delay: 3.0s;  animation-duration: 1.0s; }
-.cta-text     { animation-delay: 3.3s;  animation-duration: 1.0s; }
-.form-wrap    { animation-delay: 3.6s;  animation-duration: 1.0s; }
-.fine-print   { animation-delay: 3.9s;  animation-duration: 1.0s; }
+/* Fase 2 — de oplossing en uitnodiging */
+.body-text    { animation-delay: 2.2s;  animation-duration: 1.0s; }
+.rust-tekst   { animation-delay: 2.6s;  animation-duration: 1.0s; }
+.cta-text     { animation-delay: 3.0s;  animation-duration: 1.0s; }
+.form-wrap    { animation-delay: 3.4s;  animation-duration: 1.0s; }
+.fine-print   { animation-delay: 3.8s;  animation-duration: 1.0s; }
+.fine-sub     { animation-delay: 3.8s;  animation-duration: 1.0s; }
 
-.rust-tekst {
-  opacity: 0;
-  animation: fadeUp 1.0s ease forwards;
-  animation-delay: 3.0s;
-}
+/* Fase 3 — het merk als laatste */
+.ornament     { animation-delay: 4.4s;  animation-duration: 1.2s; }
+.logo         { animation-delay: 4.7s;  animation-duration: 1.2s; }
+.tagline      { animation-delay: 5.0s;  animation-duration: 1.2s; }
+.divider      { animation-delay: 5.2s;  animation-duration: 1.0s; }
 </style>
 </head>
 <body>
@@ -380,9 +380,11 @@ body {
       <a href="https://app.tafelplan.com/privacy" target="_blank">privacyverklaring</a>
       en
       <a href="https://app.tafelplan.com/voorwaarden" target="_blank">algemene voorwaarden</a>.
+    </p>
+    <p class="fine-print" style="margin-top:0.3rem;">
       Na de lancering gaat de prijs omhoog.
     </p>
-    <p style="font-size:0.72rem;color:rgba(201,168,76,0.45);font-style:italic;line-height:1.6;margin-top:0.3rem;">
+    <p class="fine-sub" style="font-size:0.72rem;color:rgba(201,168,76,0.45);font-style:italic;line-height:1.6;margin-top:0.3rem;">
       Je ontvangt één bericht bij lancering met het founder-aanbod. Geen spam, geen verplichtingen.
     </p>
   </div>
