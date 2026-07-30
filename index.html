@@ -84,6 +84,7 @@ body {
   height: 6px;
   background: #C9A84C;
   transform: rotate(45deg);
+  animation: pulse 3s ease-in-out infinite;
 }
 
 .logo {
@@ -201,7 +202,15 @@ body {
 #email-input:focus { border-color: rgba(201,168,76,0.6); }
 
 .cta-btn {
-  background: #E9C46A;
+  background: linear-gradient(
+    105deg,
+    #E9C46A 0%,
+    #E9C46A 40%,
+    #f5d98a 50%,
+    #E9C46A 60%,
+    #E9C46A 100%
+  );
+  background-size: 200% auto;
   border: none;
   border-radius: 40px;
   padding: 15px 22px;
@@ -212,6 +221,7 @@ body {
   cursor: pointer;
   letter-spacing: 0.02em;
   transition: opacity 0.2s;
+  animation: shimmer 4s linear infinite;
 }
 
 .cta-btn:hover { opacity: 0.9; }
@@ -252,6 +262,61 @@ body {
   color: rgba(255,255,255,0.55);
   line-height: 1.8;
 }
+
+/* Fade-in van onderaf */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Pulse op diamant */
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+    transform: rotate(45deg) scale(1);
+  }
+  50% {
+    opacity: 0.5;
+    transform: rotate(45deg) scale(0.75);
+  }
+}
+
+/* Shimmer op knop */
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+.ornament,
+.logo,
+.tagline,
+.divider,
+.headline,
+.headline-sub,
+.body-text,
+.cta-text,
+.form-wrap,
+.fine-print {
+  opacity: 0;
+  animation: fadeUp 0.6s ease forwards;
+}
+
+.ornament       { animation-delay: 0.1s; }
+.logo           { animation-delay: 0.25s; }
+.tagline        { animation-delay: 0.35s; }
+.divider        { animation-delay: 0.45s; }
+.headline       { animation-delay: 0.55s; }
+.headline-sub   { animation-delay: 0.65s; }
+.body-text      { animation-delay: 0.75s; }
+.cta-text       { animation-delay: 0.85s; }
+.form-wrap      { animation-delay: 0.95s; }
+.fine-print     { animation-delay: 1.05s; }
 </style>
 </head>
 <body>
