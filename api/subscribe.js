@@ -69,7 +69,7 @@ export default async function handler(req, res) {
         subject: 'Je staat op de lijst 🎉',
         htmlContent: `
           <!-- TABELLEN EN bgcolor, GEEN DIVS MET CSS-ACHTERGROND.
-               Outlook rendert met de Word-engine: die negeert `background` op
+               Outlook rendert met de Word-engine: die negeert background op
                een div en negeert max-width/margin:auto, dus stond het blok
                niet gecentreerd en bleef de ruimte eromheen wit. Opeenvolgende
                divs krijgen daar bovendien onderlinge ruimte -- dat was de witte
